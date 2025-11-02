@@ -11,6 +11,7 @@ import Programs from './pages/Programs';
 import Scholarships from './pages/Scholarships';
 import Applications from './pages/Applications';
 import Profile from './pages/Profile';
+import Chat from './pages/Chat';
 
 const theme = createTheme({
   palette: {
@@ -80,6 +81,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <ProtectedRoute>
+                  <Chat />
                 </ProtectedRoute>
               }
             />

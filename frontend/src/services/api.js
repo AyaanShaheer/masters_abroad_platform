@@ -80,4 +80,10 @@ export const applicationsAPI = {
   deleteApplication: (id) => api.delete(`/applications/${id}`),
 };
 
+// Chat API
+export const chatAPI = {
+  sendMessage: (data) => api.post('/chat/', data),
+  clearSession: (sessionId) => api.delete(`/chat/session?session_id=${sessionId}`),
+};
+
 export default api;

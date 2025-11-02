@@ -16,3 +16,5 @@ qdrant-client
 tiktoken
 langchain 
 langchain-openai
+sentence-transformers
+groq

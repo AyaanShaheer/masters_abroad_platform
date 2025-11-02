@@ -10,6 +10,7 @@ import {
   AppBar,
   Toolbar,
   IconButton,
+  Fab,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -17,6 +18,7 @@ import {
   AccountBalance,
   Assignment,
   ExitToApp,
+  Chat as ChatIcon,
 } from '@mui/icons-material';
 import { useAuth } from '../context/AuthContext';
 import { programsAPI, scholarshipsAPI, applicationsAPI } from '../services/api';
@@ -162,9 +164,29 @@ const Dashboard = () => {
                 Update Profile
               </Button>
             </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<ChatIcon />}
+                onClick={() => navigate('/chat')}
+              >
+                AI Assistant
+              </Button>
+            </Grid>
           </Grid>
         </Box>
       </Container>
+
+      {/* Floating Chat Button */}
+      <Fab
+        color="secondary"
+        aria-label="chat"
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        onClick={() => navigate('/chat')}
+      >
+        <ChatIcon />
+      </Fab>
     </>
   );
 };
