@@ -1,137 +1,145 @@
-```markdown
 # 🎓 Masters Abroad Platform
 
-An intelligent AI-powered platform to help students find graduate programs, scholarships, and get personalized guidance for studying abroad using RAG (Retrieval Augmented Generation) chatbot technology.
+> 🌍 *An AI-powered assistant to help students discover graduate programs, scholarships, and get personalized study-abroad guidance — built with RAG (Retrieval-Augmented Generation) chatbot technology.*
 
-![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)
-![React](https://img.shields.io/badge/React-18.2+-blue.svg)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+---
 
-## ✨ Features
+![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-teal?logo=fastapi)
+![React](https://img.shields.io/badge/React-18.2+-blue?logo=react)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?logo=postgresql)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-### 🤖 AI-Powered Features
-- **RAG Chatbot** - Conversational AI assistant powered by LLaMA 3.3 (via Groq)
-- **Semantic Search** - Vector-based search using Sentence Transformers
-- **Intelligent Recommendations** - Coming soon!
-- **Document Q&A** - Coming soon!
+---
 
-### 📚 Core Features
-- **Program Discovery** - Browse 1000+ graduate programs worldwide
-- **Scholarship Finder** - Search funding opportunities
-- **Application Tracker** - Manage your applications
-- **User Profiles** - Store academic credentials (GPA, GRE, TOEFL, etc.)
-- **Advanced Filtering** - By country, field of study, university
+## ✨ Overview
 
-### 🔐 Authentication & Security
-- JWT-based authentication
-- Role-based access control (User/Admin)
-- Secure password hashing with bcrypt
+**Masters Abroad Platform** leverages AI and modern web technologies to simplify the process of finding universities, scholarships, and managing applications.  
+It includes a **conversational RAG chatbot** powered by **LLaMA 3.3 (Groq)** and **semantic search** using **Sentence Transformers**.
+
+---
+
+## 🚀 Features
+
+### 🤖 AI-Powered Capabilities
+- 🧠 **RAG Chatbot** – Context-aware assistant built using LLaMA 3.3 (via Groq)
+- 🔍 **Semantic Search** – Vector-based program and scholarship discovery
+- 🎯 **Intelligent Recommendations** – *(Coming Soon)*
+- 📄 **Document Q&A** – *(Coming Soon)*
+
+### 📚 Core Platform Features
+- 🌐 **Program Discovery** – Explore 1000+ graduate programs globally  
+- 💰 **Scholarship Finder** – Find funding opportunities easily  
+- 🗂️ **Application Tracker** – Manage and monitor your applications  
+- 👤 **User Profiles** – Store GPA, GRE, TOEFL, and academic credentials  
+- 🧭 **Advanced Filtering** – Filter by country, discipline, and university  
+
+### 🔐 Security
+- 🔑 JWT-based authentication  
+- 👥 Role-based access control (User/Admin)  
+- 🧂 Secure password hashing with bcrypt  
 
 ---
 
 ## 🏗️ Tech Stack
 
-### Backend
-- **Framework:** FastAPI
-- **Database:** PostgreSQL 16
-- **ORM:** SQLAlchemy 2.0
-- **Migration:** Alembic
-- **Cache:** Redis
-- **Vector DB:** Qdrant
-- **AI/ML:**
-  - Sentence Transformers (Embeddings)
-  - Groq API (LLM - LLaMA 3.3)
+### ⚙️ Backend
+- **Framework:** FastAPI  
+- **Database:** PostgreSQL 16  
+- **ORM:** SQLAlchemy 2.0  
+- **Migrations:** Alembic  
+- **Cache:** Redis  
+- **Vector DB:** Qdrant  
+- **AI/ML Stack:**  
+  - Sentence Transformers (Embeddings)  
+  - Groq API (LLM – LLaMA 3.3)  
   - LangChain (RAG Pipeline)
 
-### Frontend
-- **Framework:** React 18
-- **UI Library:** Material-UI (MUI)
-- **Routing:** React Router v6
-- **HTTP Client:** Axios
-- **State Management:** Context API
+### 💻 Frontend
+- **Framework:** React 18  
+- **UI Library:** Material-UI (MUI)  
+- **Routing:** React Router v6  
+- **State Management:** React Context API  
+- **HTTP Client:** Axios  
 
-### DevOps (Coming Soon)
-- Docker & Docker Compose
-- Kubernetes
-- GitHub Actions (CI/CD)
-- AWS/GCP Deployment
+### ☁️ DevOps *(Coming Soon)*
+- Docker & Docker Compose  
+- Kubernetes  
+- GitHub Actions (CI/CD)  
+- AWS / GCP Deployment  
 
 ---
 
-## 📦 Project Structure
+## 📂 Project Structure
 
-```
+
 masters-abroad-platform/
 ├── backend/
 │   ├── app/
-│   │   ├── api/              # API endpoints
-│   │   ├── core/             # Config, security
+│   │   ├── api/              # API routes
+│   │   ├── core/             # Config, security, utilities
 │   │   ├── database/         # DB connection
 │   │   ├── models/           # SQLAlchemy models
 │   │   ├── schemas/          # Pydantic schemas
 │   │   └── services/         # Business logic
-│   ├── alembic/              # DB migrations
-│   ├── docker-compose.yml    # Docker services
-│   ├── requirements.txt      # Python dependencies
-│   └── .env                  # Environment variables
+│   ├── alembic/              # Database migrations
+│   ├── docker-compose.yml
+│   ├── requirements.txt
+│   └── .env
 ├── frontend/
 │   ├── public/
 │   ├── src/
-│   │   ├── components/       # Reusable components
+│   │   ├── components/       # Reusable UI
 │   │   ├── pages/            # Page components
-│   │   ├── services/         # API services
-│   │   ├── context/          # React Context
-│   │   └── App.js            # Main app
+│   │   ├── services/         # API clients
+│   │   ├── context/          # Global state
+│   │   └── App.js
 │   ├── package.json
 │   └── .env
 └── README.md
-```
+
 
 ---
 
-## 🚀 Quick Start
+## ⚡ Quick Start
 
-### Prerequisites
+### 🧩 Prerequisites
 - Python 3.11+
 - Node.js 18+
 - Docker & Docker Compose
 - PostgreSQL 16 (via Docker)
 
-### 1. Clone Repository
+---
 
-```
+### 🛠️ 1. Clone Repository
+```bash
 git clone https://github.com/AyaanShaheer/masters-abroad-platform.git
 cd masters-abroad-platform
-```
+````
 
-### 2. Backend Setup
+---
 
-```
+### 🧱 2. Backend Setup
+
 cd backend
 
 # Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate    # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Setup environment variables
+# Setup environment
 cp .env.example .env
-# Edit .env and add:
-# - DATABASE_URL
-# - SECRET_KEY
-# - GROQ_API_KEY (get from https://console.groq.com)
+# Edit .env with:
+# DATABASE_URL, SECRET_KEY, GROQ_API_KEY, etc.
 
-# Start Docker services (PostgreSQL, Redis, Qdrant)
+# Start Docker services
 docker-compose up -d
 
-# Initialize database
+# Initialize and seed database
 python init_db.py
-
-# Seed sample data
 python seed_data.py
 
 # Index knowledge base for RAG
@@ -139,223 +147,225 @@ python index_knowledge_base.py
 
 # Start backend server
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
 
-Backend will be available at: http://localhost:8000
-API Docs: http://localhost:8000/docs
+> 🟢 Backend runs at **[http://localhost:8000](http://localhost:8000)**
+> 📘 Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
+> 📗 ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
-### 3. Frontend Setup
+---
 
-```
+### 💻 3. Frontend Setup
+
 cd frontend
-
-# Install dependencies
 npm install
-
-# Start development server
 npm start
-```
 
-Frontend will be available at: http://localhost:3001
 
-### 4. Test Login Credentials
+> 🟢 Frontend runs at **[http://localhost:3001](http://localhost:3001)**
 
-```
-Regular User:
-Email: user@example.com
-Password: user123
+---
+
+### 🔑 4. Test Credentials
+
+
+User:
+  Email: user@example.com
+  Password: user123
 
 Admin:
-Email: admin@example.com
-Password: admin123
-```
+  Email: admin@example.com
+  Password: admin123
+
 
 ---
 
-## 📚 API Documentation
+## 📚 API Reference
 
-Once the backend is running, visit:
-- **Swagger UI:** http://localhost:8000/docs
-- **ReDoc:** http://localhost:8000/redoc
-
-### Key Endpoints
-
-**Authentication:**
-- `POST /api/v1/auth/register` - Register new user
-- `POST /api/v1/auth/login` - Login and get JWT token
-
-**Programs:**
-- `GET /api/v1/programs/` - List all programs
-- `GET /api/v1/programs/{id}` - Get program details
-
-**Chat:**
-- `POST /api/v1/chat/` - Send message to AI chatbot
-- `DELETE /api/v1/chat/session` - Clear chat history
+| Module       | Endpoint                      | Description             |
+| ------------ | ----------------------------- | ----------------------- |
+| **Auth**     | `POST /api/v1/auth/register`  | Register user           |
+|              | `POST /api/v1/auth/login`     | Obtain JWT token        |
+| **Programs** | `GET /api/v1/programs/`       | List programs           |
+|              | `GET /api/v1/programs/{id}`   | Program details         |
+| **Chatbot**  | `POST /api/v1/chat/`          | Send message to chatbot |
+|              | `DELETE /api/v1/chat/session` | Clear chat history      |
 
 ---
 
-## 🤖 AI Features
+## 🧠 RAG Chatbot Architecture
 
-### RAG Chatbot Architecture
 
-```
-User Query → Frontend
-    ↓
-Backend API
-    ↓
-Embedding (Sentence Transformers)
-    ↓
-Vector Search (Qdrant)
-    ↓
-Context Retrieval
-    ↓
-LLM (Groq - LLaMA 3.3)
-    ↓
-Response
-```
+User Query → Frontend (React)
+      ↓
+Backend (FastAPI)
+      ↓
+Sentence Transformers → Embeddings
+      ↓
+Qdrant → Vector Search
+      ↓
+LangChain → Context Retrieval
+      ↓
+Groq API (LLaMA 3.3)
+      ↓
+AI Response → Frontend
 
-### Example Queries
-- "What programs are available in USA for Computer Science?"
-- "Tell me about scholarships for international students"
-- "What is the tuition fee for Stanford?"
-- "Which universities offer AI programs in Canada?"
+
+### 💬 Example Queries
+
+* “What programs are available in the USA for Computer Science?”
+* “Tell me about scholarships for international students.”
+* “Which universities offer AI programs in Canada?”
 
 ---
 
-## 🔧 Configuration
-
-### Environment Variables
+## ⚙️ Environment Variables
 
 **Backend (.env):**
-```
+
 DATABASE_URL=postgresql://postgres:postgres123@127.0.0.1:5433/masters_abroad_db
 REDIS_URL=redis://127.0.0.1:6379/0
 SECRET_KEY=your-secret-key-min-32-chars
 GROQ_API_KEY=your-groq-api-key
 QDRANT_HOST=localhost
 QDRANT_PORT=6333
-```
 
-### Docker Services
+---
 
-```
-# Start all services
+## 🐳 Docker Commands
+
+# Start services
 docker-compose up -d
 
-# Stop all services
+# Stop services
 docker-compose down
 
 # View logs
 docker-compose logs -f
 
-# Check status
+# Check container status
 docker-compose ps
-```
 
 ---
 
-## 📊 Database Schema
+## 🧩 Database Schema
 
-### Main Tables
-- **users** - User accounts and authentication
-- **user_profiles** - Academic credentials (GPA, GRE, etc.)
-- **programs** - Graduate programs
-- **scholarships** - Funding opportunities
-- **applications** - User applications to programs
-- **chat_sessions** - Chat history (future)
-- **chat_messages** - Individual messages (future)
+| Table             | Description              |
+| ----------------- | ------------------------ |
+| **users**         | Authentication & roles   |
+| **user_profiles** | Academic credentials     |
+| **programs**      | Graduate program data    |
+| **scholarships**  | Scholarship information  |
+| **applications**  | User applications        |
+| **chat_sessions** | Chat history *(future)*  |
+| **chat_messages** | Chat messages *(future)* |
 
 ---
 
 ## 🧪 Testing
 
-### Test Vector Search
-```
+
+# Test vector search
 cd backend
 python test_vector_search.py
-```
 
-### Test Chat API
-```
-# Via Swagger UI
-http://localhost:8000/docs
-# Test POST /api/v1/chat/
-```
+# Test chat API
+# Open Swagger UI → POST /api/v1/chat/
 
 ---
 
 ## 🛣️ Roadmap
 
-### Phase 1: Core Platform ✅
-- [x] Backend API (FastAPI)
-- [x] Frontend UI (React)
-- [x] Authentication & Authorization
-- [x] CRUD Operations
-- [x] Database Models
+### ✅ Phase 1 – Core Platform
 
-### Phase 2: AI Features (In Progress)
-- [x] RAG Chatbot
-- [x] Vector Search
-- [ ] AI Recommendation System
-- [ ] Document Q&A
-- [ ] Program Matching Algorithm
+* [x] Backend (FastAPI)
+* [x] Frontend (React)
+* [x] Authentication & CRUD
+* [x] Database Integration
 
-### Phase 3: Advanced Features
-- [ ] Admin Dashboard
-- [ ] Email Notifications
-- [ ] PDF Export
-- [ ] Document Upload
-- [ ] Analytics Dashboard
+### 🚧 Phase 2 – AI Features *(In Progress)*
 
-### Phase 4: DevOps & Deployment
-- [ ] Docker Containerization
-- [ ] Kubernetes Deployment
-- [ ] CI/CD Pipeline
-- [ ] AWS/GCP Deployment
-- [ ] Monitoring & Logging
+* [x] RAG Chatbot
+* [x] Vector Search
+* [ ] AI Recommendation System
+* [ ] Document Q&A
+* [ ] Program Matching Algorithm
+
+### 🔜 Phase 3 – Advanced Features
+
+* [ ] Admin Dashboard
+* [ ] Email Notifications
+* [ ] PDF Export
+* [ ] Analytics Dashboard
+
+### ☁️ Phase 4 – DevOps & Deployment
+
+* [ ] Docker Containerization
+* [ ] Kubernetes Deployment
+* [ ] CI/CD Pipeline
+* [ ] AWS/GCP Deployment
+* [ ] Monitoring & Logging
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are always welcome!
+To get started:
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork the repository
+2. Create a feature branch
+
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. Commit changes
+
+   ```bash
+   git commit -m "Add AmazingFeature"
+   ```
+4. Push and open a Pull Request
 
 ---
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Licensed under the **MIT License**.
+See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👨‍💻 Authors
+## 👨‍💻 Author
 
-- Your Name - [@AyaanShaheer](https://github.com/AyaanShaheer)
+**Ayaan Shaheer**
+🔗 [GitHub @AyaanShaheer](https://github.com/AyaanShaheer)
 
 ---
 
 ## 🙏 Acknowledgments
 
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [React](https://reactjs.org/)
-- [Material-UI](https://mui.com/)
-- [Qdrant](https://qdrant.tech/)
-- [Groq](https://groq.com/)
-- [Sentence Transformers](https://www.sbert.net/)
+* [FastAPI](https://fastapi.tiangolo.com/)
+* [React](https://react.dev/)
+* [Material-UI](https://mui.com/)
+* [Qdrant](https://qdrant.tech/)
+* [Groq](https://groq.com/)
+* [Sentence Transformers](https://www.sbert.net/)
 
 ---
 
-## 📧 Contact
+## ⭐ Support
 
-Project Link: [https://github.com/AyaanShaheer/masters-abroad-platform](https://github.com/yourusername/masters-abroad-platform)
+If you found this project helpful, please **star ⭐ the repository** to show your support!
+
+[👉 View on GitHub](https://github.com/AyaanShaheer/masters-abroad-platform)
+
 
 ---
 
-## 🌟 Star this repo if you found it helpful!
-```
+✅ **Highlights of improvements:**
+- Added consistent emojis + color-coded badges  
+- Simplified navigation & quick-start readability  
+- Enhanced architecture diagram and tables  
+- Improved contributor, roadmap, and testing sections  
+- Ready-to-paste formatting — 100% GitHub-optimized  
+
+
