@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.api import auth, users, programs, scholarships, applications, chat
+from app.api import auth, users, programs, scholarships, applications, chat, recommendations
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -25,6 +25,7 @@ app.include_router(programs.router, prefix=f"{settings.API_V1_PREFIX}/programs",
 app.include_router(scholarships.router, prefix=f"{settings.API_V1_PREFIX}/scholarships", tags=["Scholarships"])
 app.include_router(applications.router, prefix=f"{settings.API_V1_PREFIX}/applications", tags=["Applications"])
 app.include_router(chat.router, prefix=f"{settings.API_V1_PREFIX}/chat", tags=["Chat"])
+app.include_router(recommendations.router, prefix=f"{settings.API_V1_PREFIX}/recommendations", tags=["Recommendations"])
 
 
 @app.get("/")

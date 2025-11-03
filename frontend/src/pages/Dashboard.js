@@ -22,6 +22,7 @@ import {
 } from '@mui/icons-material';
 import { useAuth } from '../context/AuthContext';
 import { programsAPI, scholarshipsAPI, applicationsAPI } from '../services/api';
+import { TrendingUp } from '@mui/icons-material';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -153,6 +154,16 @@ const Dashboard = () => {
                 onClick={() => navigate('/scholarships')}
               >
                 View Scholarships
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="warning"
+                startIcon={<TrendingUp />}
+                onClick={() => navigate('/recommendations')}
+              >
+                AI Recommendations
               </Button>
             </Grid>
             <Grid item>

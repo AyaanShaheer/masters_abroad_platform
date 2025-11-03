@@ -86,4 +86,9 @@ export const chatAPI = {
   clearSession: (sessionId) => api.delete(`/chat/session?session_id=${sessionId}`),
 };
 
+// Recommendations API
+export const recommendationsAPI = {
+  getRecommendations: (limit = 10) => api.get(`/recommendations/?limit=${limit}`),
+};
+
 export default api;
