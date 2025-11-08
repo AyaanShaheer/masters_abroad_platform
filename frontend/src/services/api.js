@@ -91,4 +91,13 @@ export const recommendationsAPI = {
   getRecommendations: (limit = 10) => api.get(`/recommendations/?limit=${limit}`),
 };
 
+// Scraper API
+export const scraperAPI = {
+  subscribe: (data) => api.post('/scraper/subscribe', data),
+  getSubscription: () => api.get('/scraper/subscription'),
+  unsubscribe: () => api.delete('/scraper/subscription'),
+  getScraped: (skip = 0, limit = 20) => api.get(`/scraper/scraped?skip=${skip}&limit=${limit}`),
+  triggerScraping: () => api.post('/scraper/scrape/trigger'),
+};
+
 export default api;

@@ -18,3 +18,9 @@ langchain
 langchain-openai
 sentence-transformers
 groq
+beautifulsoup4
+requests-html
+playwright
+aiosmtplib
+email-validator
+apscheduler

@@ -1,12 +1,25 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
 from app.core.config import settings
-from app.api import auth, users, programs, scholarships, applications, chat, recommendations
+from app.api import auth, users, programs, scholarships, applications, chat, recommendations, scraper
+from app.scheduler import start_scheduler
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    scheduler = start_scheduler()
+    yield
+    # Shutdown
+    scheduler.shutdown()
+
 
 app = FastAPI(
     title=settings.APP_NAME,
     debug=settings.DEBUG,
-    openapi_url=f"{settings.API_V1_PREFIX}/openapi.json"
+    openapi_url=f"{settings.API_V1_PREFIX}/openapi.json",
+    lifespan=lifespan
 )
 
 # CORS middleware
@@ -26,6 +39,7 @@ app.include_router(scholarships.router, prefix=f"{settings.API_V1_PREFIX}/schola
 app.include_router(applications.router, prefix=f"{settings.API_V1_PREFIX}/applications", tags=["Applications"])
 app.include_router(chat.router, prefix=f"{settings.API_V1_PREFIX}/chat", tags=["Chat"])
 app.include_router(recommendations.router, prefix=f"{settings.API_V1_PREFIX}/recommendations", tags=["Recommendations"])
+app.include_router(scraper.router, prefix=f"{settings.API_V1_PREFIX}/scraper", tags=["Web Scraper"])
 
 
 @app.get("/")

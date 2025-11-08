@@ -14,6 +14,7 @@ import Applications from './pages/Applications';
 import Profile from './pages/Profile';
 import Chat from './pages/Chat';
 import Recommendations from './pages/Recommendations';
+import ScholarshipAlerts from './pages/ScholarshipAlerts';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -88,6 +89,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Recommendations />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/alerts"
+              element={
+                <ProtectedRoute>
+                  <ScholarshipAlerts />
                 </ProtectedRoute>
               }
             />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Notifications } from '@mui/icons-material';
 import {
   Container,
   Grid,
@@ -348,6 +349,18 @@ const Dashboard = () => {
                   sx={{ py: 1.5 }}
                 >
                   Update Profile
+                </Button>
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="info"
+                  startIcon={<Notifications />}
+                  onClick={() => navigate('/alerts')}
+                  sx={{ py: 1.5 }}
+                >
+                  Scholarship Alerts
                 </Button>
               </Grid>
             </Grid>

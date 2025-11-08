@@ -1,19 +1,21 @@
+import logging
 from app.database.session import engine, Base
-from app.models.user import User
-from app.models.profile import UserProfile
-from app.models.program import Program
-from app.models.scholarship import Scholarship
-from app.models.application import Application
+from app.models import user, program, scholarship, application, profile, chat, scraper  # Added scraper
 
-print("Dropping all tables...")
-Base.metadata.drop_all(bind=engine)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-print("Creating all tables...")
-Base.metadata.create_all(bind=engine)
 
-print("Tables created successfully!")
-print("\nTables in database:")
-from sqlalchemy import inspect
-inspector = inspect(engine)
-for table_name in inspector.get_table_names():
-    print(f"  - {table_name}")
+def init_database():
+    """Initialize database - create all tables."""
+    logger.info("Dropping all tables...")
+    Base.metadata.drop_all(bind=engine)
+    
+    logger.info("Creating all tables...")
+    Base.metadata.create_all(bind=engine)
+    
+    logger.info("✅ Database initialized successfully!")
+
+
+if __name__ == "__main__":
+    init_database()
