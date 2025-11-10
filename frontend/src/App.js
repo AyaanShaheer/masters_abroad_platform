@@ -17,7 +17,7 @@ import Profile from './pages/Profile';
 import Chat from './pages/Chat';
 import Recommendations from './pages/Recommendations';
 import ScholarshipAlerts from './pages/ScholarshipAlerts';
-
+import SOPTool from './pages/SOPTool';
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -91,6 +91,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Recommendations />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/sop-tool"
+              element={
+                <ProtectedRoute>
+                  <SOPTool />
                 </ProtectedRoute>
               }
             />

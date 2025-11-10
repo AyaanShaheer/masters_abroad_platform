@@ -1,6 +1,6 @@
 import logging
 from app.database.session import engine, Base
-from app.models import user, program, scholarship, application, profile, chat, scraper  # Added scraper
+from app.models import user, program, scholarship, application, profile, chat, scraper, sop  
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

@@ -28,6 +28,7 @@ import {
   Brightness4,
   Brightness7,
   Person,
+  AutoAwesome,  // Added this line
 } from '@mui/icons-material';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import { useAuth } from '../context/AuthContext';
@@ -366,6 +367,18 @@ const Dashboard = () => {
                   sx={{ py: 1.5 }}
                 >
                   Scholarship Alerts
+                </Button>
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="secondary"
+                  startIcon={<AutoAwesome />}
+                  onClick={() => navigate('/sop-tool')}
+                  sx={{ py: 1.5 }}
+                >
+                  SOP Tool
                 </Button>
               </Grid>
             </Grid>

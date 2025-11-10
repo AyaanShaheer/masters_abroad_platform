@@ -100,4 +100,15 @@ export const scraperAPI = {
   triggerScraping: () => api.post('/scraper/scrape/trigger'),
 };
 
+// SOP API
+export const sopAPI = {
+  generate: (data) => api.post('/sop/generate', data),
+  analyze: (data) => api.post('/sop/analyze', data),
+  improve: (sopId) => api.post(`/sop/improve/${sopId}`),
+  getSops: () => api.get('/sop/'),
+  getSop: (id) => api.get(`/sop/${id}`),
+  updateSop: (id, data) => api.put(`/sop/${id}`, data),
+  deleteSop: (id) => api.delete(`/sop/${id}`),
+};
+
 export default api;
