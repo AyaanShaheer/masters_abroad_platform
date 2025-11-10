@@ -152,6 +152,11 @@ const Dashboard = () => {
             </Avatar>
             <Typography variant="body1">{user?.full_name}</Typography>
           </Box>
+          {user?.role === 'admin' && (
+            <Button color="inherit" onClick={() => navigate('/admin')}>
+              Admin Panel
+            </Button>
+          )}
           <IconButton color="inherit" onClick={handleLogout}>
             <ExitToApp />
           </IconButton>

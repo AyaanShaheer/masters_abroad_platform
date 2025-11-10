@@ -2,7 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
-
+import AdminDashboard from './pages/admin/AdminDashboard';
+import ManagePrograms
+  from './pages/admin/ManagerPrograms';
 // Pages
 import Landing from './pages/Landing';
 import Login from './pages/Login';
@@ -97,6 +99,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ScholarshipAlerts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/programs"
+              element={
+                <ProtectedRoute>
+                  <ManagePrograms />
                 </ProtectedRoute>
               }
             />
