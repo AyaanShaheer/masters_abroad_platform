@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.core.config import settings
-from app.api import auth, users, programs, scholarships, applications, chat, recommendations, scraper, sop
+from app.api import auth, users, programs, scholarships, applications, chat, recommendations, scraper, sop, admission
 from app.scheduler import start_scheduler
 
 
@@ -41,6 +41,7 @@ app.include_router(chat.router, prefix=f"{settings.API_V1_PREFIX}/chat", tags=["
 app.include_router(recommendations.router, prefix=f"{settings.API_V1_PREFIX}/recommendations", tags=["Recommendations"])
 app.include_router(scraper.router, prefix=f"{settings.API_V1_PREFIX}/scraper", tags=["Web Scraper"])
 app.include_router(sop.router, prefix=f"{settings.API_V1_PREFIX}/sop", tags=["SOP Analysis"])
+app.include_router(admission.router, prefix=f"{settings.API_V1_PREFIX}/admission", tags=["Admission Prediction"])
 
 @app.get("/")
 def root():

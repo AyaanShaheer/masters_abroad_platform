@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Notifications } from '@mui/icons-material';
+import { Calculate } from '@mui/icons-material';
 import {
   Container,
   Grid,
@@ -379,6 +380,18 @@ const Dashboard = () => {
                   sx={{ py: 1.5 }}
                 >
                   SOP Tool
+                </Button>
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="info"
+                  startIcon={<Calculate />}
+                  onClick={() => navigate('/admission-calculator')}
+                  sx={{ py: 1.5 }}
+                >
+                  Admission Calculator
                 </Button>
               </Grid>
             </Grid>

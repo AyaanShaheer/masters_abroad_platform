@@ -24,3 +24,7 @@ playwright
 aiosmtplib
 email-validator
 apscheduler
+scikit-learn
+pandas
+numpy 
+joblib

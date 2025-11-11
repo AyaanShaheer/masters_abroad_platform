@@ -74,8 +74,9 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setLoading(true);
     setSuccess('');
+    setError('');
 
     const data = {
       ...formData,
@@ -101,9 +102,11 @@ const Profile = () => {
         await userAPI.createProfile(data);
       }
       setSuccess('Profile saved successfully!');
+      setLoading(false);
       loadProfile();
     } catch (err) {
       setError(err.response?.data?.detail || 'Error saving profile');
+      setLoading(false);
     }
   };
 
@@ -264,8 +267,9 @@ const Profile = () => {
                   size="large"
                   fullWidth
                   sx={{ mt: 3 }}
+                  disabled={loading}
                 >
-                  Save Profile
+                  {loading ? 'Saving...' : 'Save Profile'}
                 </Button>
               </form>
             </CardContent>

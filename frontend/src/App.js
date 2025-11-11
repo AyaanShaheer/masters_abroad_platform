@@ -18,6 +18,8 @@ import Chat from './pages/Chat';
 import Recommendations from './pages/Recommendations';
 import ScholarshipAlerts from './pages/ScholarshipAlerts';
 import SOPTool from './pages/SOPTool';
+import AdmissionCalculator from './pages/AdmissionCalculator';
+
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -99,6 +101,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <SOPTool />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admission-calculator"
+              element={
+                <ProtectedRoute>
+                  <AdmissionCalculator />
                 </ProtectedRoute>
               }
             />

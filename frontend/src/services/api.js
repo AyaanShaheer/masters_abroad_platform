@@ -111,4 +111,11 @@ export const sopAPI = {
   deleteSop: (id) => api.delete(`/sop/${id}`),
 };
 
+// Admission Prediction API
+export const admissionAPI = {
+  predict: (data) => api.post('/admission/predict', data),
+  analyze: () => api.get('/admission/analyze'),
+  getHistory: () => api.get('/admission/history'),
+};
+
 export default api;
