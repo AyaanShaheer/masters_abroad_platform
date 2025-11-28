@@ -1,0 +1,48 @@
+name: Docker Build & Push
+
+on:
+  push:
+    branches: [main]
+    # Only run this when main branch is updated
+  workflow_dispatch:
+    # Allows you to run this manually from GitHub UI
+
+env:
+  
+  DOCKER_USERNAME: ayaanshaheer
+  
+  # Image names
+  BACKEND_IMAGE: masters-abroad-backend
+  FRONTEND_IMAGE: masters-abroad-frontend
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Build Backend
+      - name: Build and push Backend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: true
+          tags: ${{ env.DOCKER_USERNAME }}/${{ env.BACKEND_IMAGE }}:latest
+
+      # Build Frontend
+      - name: Build and push Frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ env.DOCKER_USERNAME }}/${{ env.FRONTEND_IMAGE }}:latest

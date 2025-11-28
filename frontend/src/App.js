@@ -19,6 +19,10 @@ import Recommendations from './pages/Recommendations';
 import ScholarshipAlerts from './pages/ScholarshipAlerts';
 import SOPTool from './pages/SOPTool';
 import AdmissionCalculator from './pages/AdmissionCalculator';
+import ManageScholarships from './pages/admin/ManageScholarships';
+import ScholarshipDetail from './pages/ScholarshipDetail';
+import ProgramDetail from './pages/ProgramDetail';
+
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -133,6 +137,30 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ManagePrograms />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/scholarships"
+              element={
+                <ProtectedRoute>
+                  <ManageScholarships />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/scholarships/:id"
+              element={
+                <ProtectedRoute>
+                  <ScholarshipDetail />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/programs/:id"
+              element={
+                <ProtectedRoute>
+                  <ProgramDetail />
                 </ProtectedRoute>
               }
             />

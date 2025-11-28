@@ -1,0 +1,55 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  # Job 1: Test Backend
+  backend-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+          pip install pytest httpx
+
+      # Note: We skip tests requiring DB connection for simple CI
+      # In a real prod env, we'd spin up a service container for postgres
+      - name: Run Unit Tests
+        run: |
+          cd backend
+          # Running only unit tests that don't need DB
+          # For now, we just check if the app imports correctly
+          python -c "from app.main import app; print('App imports successfully')"
+
+  # Job 2: Test Frontend
+  frontend-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Check Build
+        run: |
+          cd frontend
+          npm run build

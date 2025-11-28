@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from app.core.config import settings
 from app.api import auth, users, programs, scholarships, applications, chat, recommendations, scraper, sop, admission
 from app.scheduler import start_scheduler
+from datetime import datetime
 
 
 @asynccontextmanager
@@ -55,5 +56,10 @@ def root():
 
 @app.get("/health")
 def health_check():
-    """Health check endpoint."""
-    return {"status": "healthy"}
+    """Health check endpoint for Docker."""
+    return {
+        "status": "healthy",
+        "timestamp": datetime.utcnow().isoformat(),
+        "version": "1.0.0"
+    }
+

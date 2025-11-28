@@ -5,34 +5,59 @@ import {
   Card,
   CardContent,
   Typography,
-  TextField,
-  MenuItem,
   Box,
-  Chip,
   AppBar,
   Toolbar,
   IconButton,
-  Link,
+  TextField,
+  InputAdornment,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Chip,
+  Button,
+  Pagination,
+  LinearProgress,
 } from '@mui/material';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowBack, OpenInNew } from '@mui/icons-material';
+import {
+  ArrowBack,
+  Search,
+  FilterList,
+  LocationOn,
+  AttachMoney,
+  Event,
+  OpenInNew,
+} from '@mui/icons-material';
 import { scholarshipsAPI } from '../services/api';
+
+const MotionCard = motion(Card);
 
 const Scholarships = () => {
   const navigate = useNavigate();
   const [scholarships, setScholarships] = useState([]);
   const [filteredScholarships, setFilteredScholarships] = useState([]);
-  const [countryFilter, setCountryFilter] = useState('');
   const [loading, setLoading] = useState(true);
+
+  // Filters
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('');
+  const [selectedCoverage, setSelectedCoverage] = useState('');
+  const [minAmount, setMinAmount] = useState('');
+
+  // Pagination
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 9;
 
   useEffect(() => {
     loadScholarships();
   }, []);
 
   useEffect(() => {
-    applyFilters();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryFilter, scholarships]);
+    filterScholarships();
+  }, [scholarships, searchQuery, selectedCountry, selectedCoverage, minAmount]);
 
   const loadScholarships = async () => {
     try {
@@ -46,15 +71,60 @@ const Scholarships = () => {
     }
   };
 
-  const applyFilters = () => {
-    let filtered = scholarships;
-    if (countryFilter) {
-      filtered = filtered.filter((s) => s.country === countryFilter);
+  const filterScholarships = () => {
+    let filtered = [...scholarships];
+
+    // Search filter
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (s) =>
+          s.scholarship_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          s.provider.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     }
+
+    // Country filter
+    if (selectedCountry) {
+      filtered = filtered.filter((s) => s.country === selectedCountry);
+    }
+
+    // Coverage filter
+    if (selectedCoverage) {
+      filtered = filtered.filter((s) => s.coverage_type === selectedCoverage);
+    }
+
+    // Amount filter
+    if (minAmount) {
+      filtered = filtered.filter((s) => s.amount_usd >= parseInt(minAmount));
+    }
+
     setFilteredScholarships(filtered);
+    setPage(1);
   };
 
-  const countries = [...new Set(scholarships.map((s) => s.country))];
+  const clearFilters = () => {
+    setSearchQuery('');
+    setSelectedCountry('');
+    setSelectedCoverage('');
+    setMinAmount('');
+  };
+
+  // Get unique values for dropdowns
+  const countries = [...new Set(scholarships.map((s) => s.country))].sort();
+  const coverageTypes = [...new Set(scholarships.map((s) => s.coverage_type))].filter(Boolean);
+
+  // Pagination
+  const paginatedScholarships = filteredScholarships.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+  const totalPages = Math.ceil(filteredScholarships.length / itemsPerPage);
+
+  const getCoverageColor = (coverage) => {
+    if (coverage?.toLowerCase().includes('full')) return 'success';
+    if (coverage?.toLowerCase().includes('partial')) return 'warning';
+    return 'default';
+  };
 
   return (
     <>
@@ -66,99 +136,212 @@ const Scholarships = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Scholarships
           </Typography>
+          <Chip
+            label={`${filteredScholarships.length} Scholarships`}
+            color="secondary"
+            sx={{ fontWeight: 600 }}
+          />
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        {/* Filter */}
+      <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+        {/* Filters */}
         <Card sx={{ mb: 3, p: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <FilterList sx={{ mr: 1 }} />
+            <Typography variant="h6">Filters</Typography>
+          </Box>
+
           <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={3}>
               <TextField
                 fullWidth
-                select
-                label="Country"
-                value={countryFilter}
-                onChange={(e) => setCountryFilter(e.target.value)}
-              >
-                <MenuItem value="">All Countries</MenuItem>
-                {countries.map((country) => (
-                  <MenuItem key={country} value={country}>
-                    {country}
-                  </MenuItem>
-                ))}
-              </TextField>
+                placeholder="Search scholarships..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+
+            <Grid item xs={12} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Country</InputLabel>
+                <Select
+                  value={selectedCountry}
+                  onChange={(e) => setSelectedCountry(e.target.value)}
+                  label="Country"
+                >
+                  <MenuItem value="">All Countries</MenuItem>
+                  {countries.map((country) => (
+                    <MenuItem key={country} value={country}>
+                      {country}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Coverage Type</InputLabel>
+                <Select
+                  value={selectedCoverage}
+                  onChange={(e) => setSelectedCoverage(e.target.value)}
+                  label="Coverage Type"
+                >
+                  <MenuItem value="">All Types</MenuItem>
+                  {coverageTypes.map((type) => (
+                    <MenuItem key={type} value={type}>
+                      {type}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12} md={2}>
+              <TextField
+                fullWidth
+                label="Min Amount (USD)"
+                type="number"
+                value={minAmount}
+                onChange={(e) => setMinAmount(e.target.value)}
+              />
+            </Grid>
+
+            <Grid item xs={12} md={1}>
+              <Button fullWidth variant="outlined" onClick={clearFilters} sx={{ height: 56 }}>
+                Clear
+              </Button>
             </Grid>
           </Grid>
         </Card>
 
-        {/* Results */}
-        <Typography variant="h6" gutterBottom>
-          {filteredScholarships.length} Scholarships Found
-        </Typography>
-
+        {/* Scholarships Grid */}
         {loading ? (
-          <Typography>Loading...</Typography>
+          <Box sx={{ width: '100%' }}>
+            <LinearProgress />
+          </Box>
+        ) : filteredScholarships.length === 0 ? (
+          <Card sx={{ p: 4, textAlign: 'center' }}>
+            <Typography variant="h6" color="text.secondary">
+              No scholarships found matching your criteria
+            </Typography>
+          </Card>
         ) : (
-          <Grid container spacing={3}>
-            {filteredScholarships.map((scholarship) => (
-              <Grid item xs={12} md={6} key={scholarship.id}>
-                <Card>
-                  <CardContent>
-                    <Typography variant="h6" gutterBottom>
-                      {scholarship.scholarship_name}
-                    </Typography>
-                    <Typography color="text.secondary" gutterBottom>
-                      {scholarship.provider}
-                    </Typography>
+          <>
+            <Grid container spacing={3}>
+              {paginatedScholarships.map((scholarship, index) => (
+                <Grid item xs={12} md={6} lg={4} key={scholarship.id}>
+                  <MotionCard
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    whileHover={{ scale: 1.02 }}
+                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                  >
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography variant="h6" gutterBottom>
+                        {scholarship.scholarship_name}
+                      </Typography>
 
-                    <Box sx={{ mt: 1, mb: 2 }}>
-                      <Chip label={scholarship.country} size="small" sx={{ mr: 1 }} />
-                      <Chip
-                        label={scholarship.coverage_type}
-                        size="small"
-                        color="success"
-                      />
-                    </Box>
+                      <Typography variant="subtitle1" color="primary" gutterBottom>
+                        {scholarship.provider}
+                      </Typography>
 
-                    <Typography variant="body2" paragraph>
-                      {scholarship.description}
-                    </Typography>
+                      <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                        <Chip
+                          icon={<LocationOn />}
+                          label={scholarship.country}
+                          size="small"
+                          color="primary"
+                        />
+                        <Chip
+                          icon={<AttachMoney />}
+                          label={`$${scholarship.amount_usd?.toLocaleString()}`}
+                          size="small"
+                          color="success"
+                        />
+                        {scholarship.coverage_type && (
+                          <Chip
+                            label={scholarship.coverage_type}
+                            size="small"
+                            color={getCoverageColor(scholarship.coverage_type)}
+                          />
+                        )}
+                      </Box>
 
-                    <Grid container spacing={1} sx={{ mb: 2 }}>
-                      <Grid item xs={6}>
-                        <Typography variant="caption" color="text.secondary">
-                          Amount
+                      {scholarship.min_gpa && (
+                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                          <strong>Min GPA:</strong> {scholarship.min_gpa}
                         </Typography>
-                        <Typography variant="body2">
-                          ${scholarship.amount_usd?.toLocaleString() || 'N/A'}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography variant="caption" color="text.secondary">
-                          Min GPA
-                        </Typography>
-                        <Typography variant="body2">
-                          {scholarship.min_gpa || 'N/A'}
-                        </Typography>
-                      </Grid>
-                    </Grid>
+                      )}
 
-                    {scholarship.website_url && (
-                      <Link
-                        href={scholarship.website_url}
-                        target="_blank"
-                        rel="noopener"
-                        sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                      {scholarship.application_deadline && (
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                          <Event sx={{ fontSize: 16, mr: 0.5 }} />
+                          <Typography variant="body2" color="text.secondary">
+                            Deadline: {new Date(scholarship.application_deadline).toLocaleDateString()}
+                          </Typography>
+                        </Box>
+                      )}
+
+                      {scholarship.description && (
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{
+                            mt: 2,
+                            display: '-webkit-box',
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                          }}
+                        >
+                          {scholarship.description}
+                        </Typography>
+                      )}
+                    </CardContent>
+
+                    <Box sx={{ p: 2, pt: 0, display: 'flex', gap: 1 }}>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        onClick={() => navigate(`/scholarships/${scholarship.id}`)}
                       >
-                        Visit Website <OpenInNew fontSize="small" />
-                      </Link>
-                    )}
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+                        View Details
+                      </Button>
+                      {scholarship.website_url && (
+                        <IconButton
+                          color="primary"
+                          onClick={() => window.open(scholarship.website_url, '_blank')}
+                        >
+                          <OpenInNew />
+                        </IconButton>
+                      )}
+                    </Box>
+                  </MotionCard>
+                </Grid>
+              ))}
+            </Grid>
+
+            {/* Pagination */}
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={(e, value) => setPage(value)}
+                color="primary"
+                size="large"
+              />
+            </Box>
+          </>
         )}
       </Container>
     </>
