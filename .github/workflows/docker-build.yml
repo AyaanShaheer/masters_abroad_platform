@@ -3,17 +3,10 @@ name: Docker Build & Push
 on:
   push:
     branches: [main]
-    # Only run this when main branch is updated
   workflow_dispatch:
-    # Allows you to run this manually from GitHub UI
 
 env:
-  
   DOCKER_USERNAME: ayaanshaheer
-
-
-  
-  # Image names
   BACKEND_IMAGE: masters-abroad-backend
   FRONTEND_IMAGE: masters-abroad-frontend
 
@@ -33,7 +26,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Build Backend
+      # --- Build Backend ---
       - name: Build and push Backend
         uses: docker/build-push-action@v5
         with:
@@ -41,7 +34,22 @@ jobs:
           push: true
           tags: ${{ env.DOCKER_USERNAME }}/${{ env.BACKEND_IMAGE }}:latest
 
-      # Build Frontend
+      # --- Build Frontend ---
+
+      # Step 1: Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step 2: Build the React App (This creates the 'build' folder)
+      - name: Build React App
+        run: |
+          cd frontend
+          npm install
+          CI=false npm run build
+      
+      # Step 3: Build the Docker Image using the 'build' folder
       - name: Build and push Frontend
         uses: docker/build-push-action@v5
         with:
