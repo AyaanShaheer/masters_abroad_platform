@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-backend
+  labels:
+    app: backend
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount.backend }}
+  selector:
+    matchLabels:
+      app: backend
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: backend
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: backend
+        image: {{ .Values.images.backend.repository }}:{{ .Values.images.backend.tag }}
+        imagePullPolicy: {{ .Values.images.backend.pullPolicy }}
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@{{ .Release.Name }}-postgres:5432/$(POSTGRES_DB)"
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-config
+              key: POSTGRES_DB
+        - name: REDIS_URL
+          value: "redis://:$(REDIS_PASSWORD)@{{ .Release.Name }}-redis:6379/0"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets
+              key: REDIS_PASSWORD
+        - name: QDRANT_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-config
+              key: QDRANT_HOST
+        - name: QDRANT_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-config
+              key: QDRANT_PORT
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets
+              key: SECRET_KEY
+        - name: GROQ_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets
+              key: GROQ_API_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-backend
+  labels:
+    app: backend
+    release: {{ .Release.Name }}
+spec:
+  selector:
+    app: backend
+    release: {{ .Release.Name }}
+  ports:
+  - port: {{ .Values.service.backend.port }}
+    targetPort: 8000
+  type: {{ .Values.service.backend.type }}

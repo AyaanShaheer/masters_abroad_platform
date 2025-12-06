@@ -1,0 +1,75 @@
+# Global settings
+global:
+  environment: production
+
+# Docker images
+images:
+  backend:
+    repository: ayaanshaheer/masters-abroad-backend
+    tag: latest
+    pullPolicy: Never
+  frontend:
+    repository: ayaanshaheer/masters-abroad-frontend
+    tag: latest
+    pullPolicy: Never
+  postgres:
+    repository: postgres
+    tag: 15-alpine
+    pullPolicy: IfNotPresent
+  redis:
+    repository: redis
+    tag: 7-alpine
+    pullPolicy: IfNotPresent
+  qdrant:
+    repository: qdrant/qdrant
+    tag: latest
+    pullPolicy: IfNotPresent
+
+# Replica counts
+replicaCount:
+  backend: 2
+  frontend: 2
+  postgres: 1
+  redis: 1
+  qdrant: 1
+
+# Service configurations
+service:
+  frontend:
+    type: LoadBalancer
+    port: 80
+  backend:
+    type: ClusterIP
+    port: 8000
+  postgres:
+    type: ClusterIP
+    port: 5432
+  redis:
+    type: ClusterIP
+    port: 6379
+  qdrant:
+    type: ClusterIP
+    ports:
+      http: 6333
+      grpc: 6334
+
+# Storage
+persistence:
+  postgres:
+    size: 1Gi
+  redis:
+    size: 500Mi
+  qdrant:
+    size: 1Gi
+
+# Application secrets 
+secrets:
+  postgresPassword: "postgres123"
+  redisPassword: "redis123"
+  secretKey: "REPLACE_WITH_YOUR_secret_key"
+  groqApiKey: "REPLACE_WITH_YOUR_GROQ_API_KEY"
+
+# ConfigMap data
+config:
+  postgresDb: "masters_abroad"
+  postgresUser: "postgres"

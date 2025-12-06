@@ -1,0 +1,14 @@
+apiVersion: v2
+name: masters-abroad-platform
+description: A comprehensive platform for Masters abroad guidance with AI-powered features
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - education
+  - masters
+  - ai
+  - scholarships
+maintainers:
+  - name: Ayaan Shaheer
+    email: gfever252@gmail.com
