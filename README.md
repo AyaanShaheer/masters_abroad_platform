@@ -1,371 +1,310 @@
-# 🎓 Masters Abroad Platform
+```markdown
+# 🎓 Masters Abroad Platform  
+### *AI-Powered Graduate Admissions Companion | Cloud-Native | Production-Deployed*
 
-> 🌍 *An AI-powered assistant to help students discover graduate programs, scholarships, and get personalized study-abroad guidance — built with RAG (Retrieval-Augmented Generation) chatbot technology.*
+> 🌍 **Discover programs. Generate winning SOPs. Track applications.**  
+> An end-to-end **AI + MLOps-powered platform** that simplifies the global graduate school application journey — **fully deployed on Azure Kubernetes Service (AKS)** using production-grade DevOps and cloud-native architecture.
 
 ---
 
-![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-teal?logo=fastapi)
-![React](https://img.shields.io/badge/React-18.2+-blue?logo=react)
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?logo=postgresql)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-AKS-326CE5?logo=kubernetes)
+![Azure](https://img.shields.io/badge/Azure-Cloud-0078D4?logo=microsoftazure)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-## ✨ Overview
+## 🌟 Why This Project Exists
 
-**Masters Abroad Platform** leverages AI and modern web technologies to simplify the process of finding universities, scholarships, and managing applications.  
-It includes a **conversational RAG chatbot** powered by **LLaMA 3.3 (Groq)** and **semantic search** using **Sentence Transformers**.
+Applying for graduate studies abroad is **complex, repetitive, and overwhelming**:
+- Finding the *right* programs
+- Writing compelling SOPs
+- Managing deadlines and documents
+- Navigating scholarships and eligibility
+
+**Masters Abroad Platform** solves this with **AI-first design**, **cloud scalability**, and **real-world production deployment** — not just a demo, but a **full SaaS-grade system**.
 
 ---
 
-## 🚀 Features
+## 🚀 Live System Overview
 
-### 🤖 AI-Powered Capabilities
-- 🧠 **RAG Chatbot** – Context-aware assistant built using LLaMA 3.3 (via Groq)
-- 🔍 **Semantic Search** – Vector-based program and scholarship discovery
-- 🎯 **Intelligent Recommendations** – *(Coming Soon)*
-- 📄 **Document Q&A** – *(Coming Soon)*
+d:\Download_Folder_D\Gemini_Generated_Image_t9ru9gt9ru9gt9ru.png
+
+| Category | Details |
+|-------|--------|
+| ☁️ **Deployment** | Azure Kubernetes Service (AKS) |
+| 🧠 **AI Stack** | OpenAI GPT-4 · Groq (LLaMA 3.3) · Anthropic Claude |
+| 🏗️ **Architecture** | Microservices · Containerized · Cloud-native |
+| 🔐 **Security** | JWT Auth · RBAC · Secrets Management |
+| 📦 **MLOps** | Docker → ACR → AKS → Helm |
+| 📊 **Persistence** | PostgreSQL with PVC-backed storage |
+
+---
+
+## ✨ Key Capabilities
+
+### 🤖 AI-Driven Intelligence
+- ✍️ **AI SOP Generator**
+  - Personalized SOPs using academic + professional profile
+  - Multi-LLM routing for quality vs speed optimization
+- 📊 **SOP Analysis Engine**
+  - Scores clarity, motivation, relevance, coherence, grammar
+  - Real-time feedback & re-analysis
+- 🌐 **Autonomous AI Agents**
+  - CrewAI-powered web scraping & enrichment
+  - Scholarship and program metadata automation
+- 🎯 **Multi-LLM Orchestration**
+  - Dynamic selection between GPT-4, Claude, and Groq
+
+---
 
 ### 📚 Core Platform Features
-- 🌐 **Program Discovery** – Explore 1000+ graduate programs globally  
-- 💰 **Scholarship Finder** – Find funding opportunities easily  
-- 🗂️ **Application Tracker** – Manage and monitor your applications  
-- 👤 **User Profiles** – Store GPA, GRE, TOEFL, and academic credentials  
-- 🧭 **Advanced Filtering** – Filter by country, discipline, and university  
-
-### 🔐 Security
-- 🔑 JWT-based authentication  
-- 👥 Role-based access control (User/Admin)  
-- 🧂 Secure password hashing with bcrypt  
+- 🌍 **Program Discovery**
+  - 1000+ global graduate programs
+  - Advanced filters: country, field, degree, deadlines
+- 💰 **Scholarship Explorer**
+  - Eligibility-aware funding opportunities
+- 🗂️ **Application Tracker**
+  - Status, deadlines, submissions, progress
+- 👤 **Academic Profile Management**
+  - GPA, GRE, TOEFL, IELTS, work experience
+- 📄 **Document Versioning**
+  - SOP history, edits, and scoring evolution
 
 ---
 
-## 🏗️ Tech Stack
+### 🔐 Security & Reliability
+- JWT-based authentication
+- Role-based access (User / Admin)
+- bcrypt password hashing
+- Kubernetes Secrets & ConfigMaps
+- Persistent Volumes for PostgreSQL
+- Stateless backend services for scalability
+
+---
+
+## 🏗️ System Architecture
+
+```
+
+Frontend (React + MUI)
+↓
+FastAPI Gateway (JWT Auth)
+↓
+Business Services (Programs, SOPs, Profiles)
+↓
+AI Orchestration Layer (CrewAI + LLMs)
+↓
+PostgreSQL (PVC-backed, StatefulSet)
+
+```
+
+📦 **Everything runs inside Kubernetes**, managed via **Helm charts**.
+
+---
+
+## 🧰 Tech Stack
 
 ### ⚙️ Backend
-- **Framework:** FastAPI  
-- **Database:** PostgreSQL 16  
-- **ORM:** SQLAlchemy 2.0  
-- **Migrations:** Alembic  
-- **Cache:** Redis  
-- **Vector DB:** Qdrant  
-- **AI/ML Stack:**  
-  - Sentence Transformers (Embeddings)  
-  - Groq API (LLM – LLaMA 3.3)  
-  - LangChain (RAG Pipeline)
+- FastAPI (Python 3.12)
+- SQLAlchemy 2.0 + Alembic
+- PostgreSQL 16
+- JWT Authentication
+- RESTful APIs
+
+### 🧠 AI / ML
+- OpenAI GPT-4
+- Groq (LLaMA 3.3)
+- Anthropic Claude
+- CrewAI agent workflows
+- Prompt engineering + scoring heuristics
 
 ### 💻 Frontend
-- **Framework:** React 18  
-- **UI Library:** Material-UI (MUI)  
-- **Routing:** React Router v6  
-- **State Management:** React Context API  
-- **HTTP Client:** Axios  
+- React 18
+- Material-UI v5
+- React Router v6
+- Axios with interceptors
+- Context API
 
-### ☁️ DevOps *(Coming Soon)*
-- Docker & Docker Compose  
-- Kubernetes  
-- GitHub Actions (CI/CD)  
-- AWS / GCP Deployment  
+### ☁️ DevOps & Cloud
+- Docker (multi-stage builds)
+- Kubernetes (AKS)
+- Helm 3
+- Azure Container Registry
+- Azure Managed Disks
+- LoadBalancer & ClusterIP services
 
 ---
 
-## 📂 Project Structure
+## 📂 Repository Structure
 
+```
 
 masters-abroad-platform/
-├── backend/
-│   ├── app/
-│   │   ├── api/              # API routes
-│   │   ├── core/             # Config, security, utilities
-│   │   ├── database/         # DB connection
-│   │   ├── models/           # SQLAlchemy models
-│   │   ├── schemas/          # Pydantic schemas
-│   │   └── services/         # Business logic
-│   ├── alembic/              # Database migrations
-│   ├── docker-compose.yml
-│   ├── requirements.txt
-│   └── .env
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/       # Reusable UI
-│   │   ├── pages/            # Page components
-│   │   ├── services/         # API clients
-│   │   ├── context/          # Global state
-│   │   └── App.js
-│   ├── package.json
-│   └── .env
+├── backend/        # FastAPI + AI logic
+├── frontend/       # React UI
+├── helm/           # Helm charts (AKS-ready)
+├── migrate-job.yaml
+├── seed-job.yaml
 └── README.md
 
-
----
-
-## ⚡ Quick Start
-
-### 🧩 Prerequisites
-- Python 3.11+
-- Node.js 18+
-- Docker & Docker Compose
-- PostgreSQL 16 (via Docker)
-
----
-
-### 🛠️ 1. Clone Repository
-```bash
-git clone https://github.com/AyaanShaheer/masters-abroad-platform.git
-cd masters-abroad-platform
 ````
 
+Clean separation of **frontend, backend, infrastructure, and data ops**.
+
 ---
 
-### 🧱 2. Backend Setup
+## ⚡ Quick Start (Local)
 
+### Backend
+```bash
 cd backend
-
-# Create virtual environment
 python -m venv venv
-source venv/bin/activate    # On Windows: venv\Scripts\activate
-
-# Install dependencies
+source venv/bin/activate
 pip install -r requirements.txt
+alembic upgrade head
+uvicorn app.main:app --reload
+````
 
-# Setup environment
-cp .env.example .env
-# Edit .env with:
-# DATABASE_URL, SECRET_KEY, GROQ_API_KEY, etc.
+📘 API Docs → `http://localhost:8000/docs`
 
-# Start Docker services
-docker-compose up -d
+### Frontend
 
-# Initialize and seed database
-python init_db.py
-python seed_data.py
-
-# Index knowledge base for RAG
-python index_knowledge_base.py
-
-# Start backend server
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-
-> 🟢 Backend runs at **[http://localhost:8000](http://localhost:8000)**
-> 📘 Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
-> 📗 ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
-
----
-
-### 💻 3. Frontend Setup
-
+```bash
 cd frontend
 npm install
 npm start
+```
 
-
-> 🟢 Frontend runs at **[http://localhost:3001](http://localhost:3001)**
-
----
-
-### 🔑 4. Test Credentials
-
-
-User:
-  Email: user@example.com
-  Password: user123
-
-Admin:
-  Email: admin@example.com
-  Password: admin123
-
+🟢 UI → `http://localhost:3000`
 
 ---
 
-## 📚 API Reference
+## ☁️ Production Deployment (AKS)
 
-| Module       | Endpoint                      | Description             |
-| ------------ | ----------------------------- | ----------------------- |
-| **Auth**     | `POST /api/v1/auth/register`  | Register user           |
-|              | `POST /api/v1/auth/login`     | Obtain JWT token        |
-| **Programs** | `GET /api/v1/programs/`       | List programs           |
-|              | `GET /api/v1/programs/{id}`   | Program details         |
-| **Chatbot**  | `POST /api/v1/chat/`          | Send message to chatbot |
-|              | `DELETE /api/v1/chat/session` | Clear chat history      |
+### Infrastructure
 
----
+* Azure Resource Group
+* Azure Container Registry
+* Azure Kubernetes Service
+* Helm-managed deployments
 
-## 🧠 RAG Chatbot Architecture
+### Deployment Flow
 
+```
+Code → Docker → ACR → AKS → Helm → Live Service
+```
 
-User Query → Frontend (React)
-      ↓
-Backend (FastAPI)
-      ↓
-Sentence Transformers → Embeddings
-      ↓
-Qdrant → Vector Search
-      ↓
-LangChain → Context Retrieval
-      ↓
-Groq API (LLaMA 3.3)
-      ↓
-AI Response → Frontend
+### Operational Controls
 
-
-### 💬 Example Queries
-
-* “What programs are available in the USA for Computer Science?”
-* “Tell me about scholarships for international students.”
-* “Which universities offer AI programs in Canada?”
+* Scale deployments
+* Restart services
+* Run DB migrations as Kubernetes Jobs
+* Stop/start AKS to reduce cost
 
 ---
 
-## ⚙️ Environment Variables
+## 🧠 AI SOP Generation Flow
 
-**Backend (.env):**
+```
+User Profile + Program
+        ↓
+Prompt Engineering
+        ↓
+LLM Invocation
+        ↓
+Post-processing & Scoring
+        ↓
+Database Persistence
+        ↓
+Frontend Visualization
+```
 
-DATABASE_URL=postgresql://postgres:postgres123@127.0.0.1:5433/masters_abroad_db
-REDIS_URL=redis://127.0.0.1:6379/0
-SECRET_KEY=your-secret-key-min-32-chars
-GROQ_API_KEY=your-groq-api-key
-QDRANT_HOST=localhost
-QDRANT_PORT=6333
-
----
-
-## 🐳 Docker Commands
-
-# Start services
-docker-compose up -d
-
-# Stop services
-docker-compose down
-
-# View logs
-docker-compose logs -f
-
-# Check container status
-docker-compose ps
+Supports **multi-version SOPs**, re-analysis, and quality comparisons.
 
 ---
 
-## 🧩 Database Schema
+## 🗄️ Database Design
 
-| Table             | Description              |
-| ----------------- | ------------------------ |
-| **users**         | Authentication & roles   |
-| **user_profiles** | Academic credentials     |
-| **programs**      | Graduate program data    |
-| **scholarships**  | Scholarship information  |
-| **applications**  | User applications        |
-| **chat_sessions** | Chat history *(future)*  |
-| **chat_messages** | Chat messages *(future)* |
+| Table         | Purpose               |
+| ------------- | --------------------- |
+| users         | Auth & roles          |
+| user_profiles | Academic data         |
+| programs      | University catalog    |
+| scholarships  | Funding data          |
+| applications  | Application lifecycle |
+| sops          | AI-generated SOPs     |
 
----
-
-## 🧪 Testing
-
-
-# Test vector search
-cd backend
-python test_vector_search.py
-
-# Test chat API
-# Open Swagger UI → POST /api/v1/chat/
+Designed with **real SaaS data modeling principles**.
 
 ---
 
 ## 🛣️ Roadmap
 
-### ✅ Phase 1 – Core Platform
+### ✅ Completed
 
-* [x] Backend (FastAPI)
-* [x] Frontend (React)
-* [x] Authentication & CRUD
-* [x] Database Integration
+* Full-stack application
+* Multi-LLM AI system
+* AKS production deployment
+* Helm-based orchestration
+* Secure authentication
+* Persistent data storage
 
-### 🚧 Phase 2 – AI Features *(In Progress)*
+### 🚧 In Progress
 
-* [x] RAG Chatbot
-* [x] Vector Search
-* [ ] AI Recommendation System
-* [ ] Document Q&A
-* [ ] Program Matching Algorithm
+* Admin dashboard
+* Email notifications
+* PDF SOP exports
+* Analytics dashboard
+* RAG-based chatbot
+* Semantic program search
 
-### 🔜 Phase 3 – Advanced Features
+### 🔜 Planned
 
-* [ ] Admin Dashboard
-* [ ] Email Notifications
-* [ ] PDF Export
-* [ ] Analytics Dashboard
-
-### ☁️ Phase 4 – DevOps & Deployment
-
-* [ ] Docker Containerization
-* [ ] Kubernetes Deployment
-* [ ] CI/CD Pipeline
-* [ ] AWS/GCP Deployment
-* [ ] Monitoring & Logging
+* GitHub Actions CI/CD
+* Prometheus + Grafana
+* ELK logging stack
+* HPA auto-scaling
+* CDN integration
 
 ---
 
-## 🤝 Contributing
+## 🏆 What This Project Demonstrates
 
-Contributions are always welcome!
-To get started:
+✅ **End-to-end ownership** (idea → production)
+✅ **Real cloud deployment (AKS)**
+✅ **Strong MLOps foundations**
+✅ **Modern AI orchestration**
+✅ **Scalable backend engineering**
+✅ **Production DevOps practices**
 
-1. Fork the repository
-2. Create a feature branch
-
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. Commit changes
-
-   ```bash
-   git commit -m "Add AmazingFeature"
-   ```
-4. Push and open a Pull Request
-
----
-
-## 📝 License
-
-Licensed under the **MIT License**.
-See the [LICENSE](LICENSE) file for details.
+This is **not a tutorial project** — it’s a **deployable SaaS system**.
 
 ---
 
 ## 👨‍💻 Author
 
 **Ayaan Shaheer**
-🔗 [GitHub @AyaanShaheer](https://github.com/AyaanShaheer)
+Full-Stack AI Engineer | MLOps | Cloud-Native Systems
 
----
-
-## 🙏 Acknowledgments
-
-* [FastAPI](https://fastapi.tiangolo.com/)
-* [React](https://react.dev/)
-* [Material-UI](https://mui.com/)
-* [Qdrant](https://qdrant.tech/)
-* [Groq](https://groq.com/)
-* [Sentence Transformers](https://www.sbert.net/)
+🔗 GitHub: [https://github.com/AyaanShaheer](https://github.com/AyaanShaheer)
+📧 Contact: *gfever252@gmail.com*
 
 ---
 
 ## ⭐ Support
 
-If you found this project helpful, please **star ⭐ the repository** to show your support!
+If this project impressed you or helped you learn:
 
-[👉 View on GitHub](https://github.com/AyaanShaheer/masters-abroad-platform)
-
+👉 **Star the repository**
+👉 **Fork it**
+👉 **Reach out — I’m open to opportunities**
 
 ---
 
-✅ **Highlights of improvements:**
-- Added consistent emojis + color-coded badges  
-- Simplified navigation & quick-start readability  
-- Enhanced architecture diagram and tables  
-- Improved contributor, roadmap, and testing sections  
-- Ready-to-paste formatting — 100% GitHub-optimized  
+*Built with curiosity, discipline, and a lot of Kubernetes YAML.* ☕🚀
 
-
+```
