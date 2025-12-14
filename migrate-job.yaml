@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: masters-abroad-migrate
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: migrate
+        image: mastersabroadacr4735.azurecr.io/masters-abroad-backend:v2025-12-14-sops-merged
+        command: ["alembic", "upgrade", "head"]
+        envFrom:
+        - configMapRef:
+            name: masters-abroad-config
+        - secretRef:
+            name: masters-abroad-secrets
+        env:
+        - name: POSTGRES_HOST
+          value: "masters-abroad-postgres"
+        - name: POSTGRES_PORT
+          value: "5432"

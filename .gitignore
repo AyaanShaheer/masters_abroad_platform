@@ -8,3 +8,4 @@ __pycache__/
 .env
 .env.prod
 .env.local
+.useful_cmds.md

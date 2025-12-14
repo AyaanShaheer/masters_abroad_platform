@@ -7,11 +7,11 @@ images:
   backend:
     repository: ayaanshaheer/masters-abroad-backend
     tag: latest
-    pullPolicy: Never
+    pullPolicy: Always
   frontend:
     repository: ayaanshaheer/masters-abroad-frontend
     tag: latest
-    pullPolicy: Never
+    pullPolicy: Always
   postgres:
     repository: postgres
     tag: 15-alpine
@@ -64,10 +64,10 @@ persistence:
 
 # Application secrets 
 secrets:
-  postgresPassword: "postgres123"
-  redisPassword: "redis123"
-  secretKey: "REPLACE_WITH_YOUR_secret_key"
-  groqApiKey: "REPLACE_WITH_YOUR_GROQ_API_KEY"
+  postgresPassword: "postgrespassword"
+  redisPassword: "redispassword"
+  secretKey: "secretkey"
+  groqApiKey: "groqapikey"
 
 # ConfigMap data
 config:

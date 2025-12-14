@@ -24,8 +24,6 @@ spec:
         ports:
         - containerPort: 8000
         env:
-        - name: DATABASE_URL
-          value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@{{ .Release.Name }}-postgres:5432/$(POSTGRES_DB)"
         - name: POSTGRES_USER
           valueFrom:
             configMapKeyRef:
@@ -41,6 +39,12 @@ spec:
             configMapKeyRef:
               name: {{ .Release.Name }}-config
               key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          value: "{{ .Release.Name }}-postgres"
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: DATABASE_URL
+          value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)"
         - name: REDIS_URL
           value: "redis://:$(REDIS_PASSWORD)@{{ .Release.Name }}-redis:6379/0"
         - name: REDIS_PASSWORD
