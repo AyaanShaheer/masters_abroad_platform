@@ -1,4 +1,3 @@
-```markdown
 # 🎓 Masters Abroad Platform  
 ### *AI-Powered Graduate Admissions Companion | Cloud-Native | Production-Deployed*
 
@@ -30,8 +29,6 @@ Applying for graduate studies abroad is **complex, repetitive, and overwhelming*
 ---
 
 ## 🚀 Live System Overview
-
-d:\Download_Folder_D\Gemini_Generated_Image_t9ru9gt9ru9gt9ru.png
 
 | Category | Details |
 |-------|--------|
@@ -307,4 +304,3 @@ If this project impressed you or helped you learn:
 
 *Built with curiosity, discipline, and a lot of Kubernetes YAML.* ☕🚀
 
-```
