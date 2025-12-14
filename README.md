@@ -85,6 +85,8 @@ Applying for graduate studies abroad is **complex, repetitive, and overwhelming*
 
 ## 🏗️ System Architecture
 
+<img width="2816" height="1536" alt="Gemini_Generated_Image_t9ru9gt9ru9gt9ru" src="https://github.com/user-attachments/assets/4c1b6a9e-ca77-4029-b5aa-e76cef072b96" />
+
 ```
 
 Frontend (React + MUI)
